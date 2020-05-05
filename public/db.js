@@ -29,11 +29,7 @@ request.onsuccess = function (event) {
   }
 };
 
-// TODO: add code to saveRecord so that it accepts a record object for a
-// transaction and saves it in the db. This function is called in index.js
-// when the user creates a transaction while offline.
 function saveRecord(record) {
-  // add your code here
   const transaction = db.transaction(["pending"], "readwrite");
   const pendingStore = transaction.objectStore("pending");
   pendingStore.add(record);
