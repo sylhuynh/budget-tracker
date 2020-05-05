@@ -7,10 +7,8 @@ window.shimIndexedDB;
 
 let db;
 
-// TODO: open  indexedDB
 const request = indexedDB.open("budget", 1);
 
-// TODO: create an object store in the open db
 request.onupgradeneeded = function (event) {
   const db = event.target.result;
   db.createObjectStore("pending", {
@@ -19,7 +17,10 @@ request.onupgradeneeded = function (event) {
   });
 
 };
-// TODO: log any indexedDB errors
+
+request.onerror = function (event) {
+  console.log(event);
+};
 
 // TODO: add code so that any transactions stored in the db
 // are sent to the backend if/when the user goes online
