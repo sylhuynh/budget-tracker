@@ -36,7 +36,7 @@ function saveRecord(record) {
 }
 
 function checkDatabase() {
-  const transaction = db.transaction(["pending"], "readwrite");
+  const transaction = db.transaction(["pending"], "readonly");
   const pendingStore = transaction.objectStore("pending");
   const getAll = pendingStore.getAll();
 
@@ -59,3 +59,5 @@ function checkDatabase() {
     }
   };
 }
+
+window.addEventListener("online", checkDatabase);
