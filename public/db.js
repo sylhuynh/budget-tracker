@@ -1,5 +1,3 @@
-
-// TODO: open  indexedDB
 const indexedDB =
 window.indexedDB ||
 window.mozIndexedDB ||
@@ -8,10 +6,19 @@ window.msIndexedDB ||
 window.shimIndexedDB;
 
 let db;
+
+// TODO: open  indexedDB
 const request = indexedDB.open("budget", 1);
 
 // TODO: create an object store in the open db
+request.onupgradeneeded = function (event) {
+  const db = event.target.result;
+  db.createObjectStore("pending", {
+    keyPath: "listID",
+    autoIncrement: true
+  });
 
+};
 // TODO: log any indexedDB errors
 
 // TODO: add code so that any transactions stored in the db
