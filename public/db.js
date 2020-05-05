@@ -34,6 +34,9 @@ request.onsuccess = function (event) {
 // when the user creates a transaction while offline.
 function saveRecord(record) {
   // add your code here
+  const transaction = db.transaction(["pending"], "readwrite");
+  const pendingStore = transaction.objectStore("pending");
+  pendingStore.add(record);
 }
 
 function checkDatabase() {
